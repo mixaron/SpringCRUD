@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @Entity
 @Table(name = "person")
@@ -19,6 +21,8 @@ public class Person {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
 
     // Страна, Город, Индекс(6 цифр)
 
@@ -82,5 +86,13 @@ public class Person {
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
